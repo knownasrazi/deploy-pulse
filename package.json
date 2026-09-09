@@ -1,0 +1,35 @@
+﻿{
+  "name": "deploy-pulse",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Deployment pulse dashboard - mock status, logs, and health for your stack.",
+  "keywords": [
+    "deploy",
+    "dashboard",
+    "status",
+    "devops",
+    "pulse"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Razi",
+    "url": "https://github.com/knownasrazi"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "biome check --diagnostic-level=warn .",
+    "format": "biome format --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.7",
+    "typescript": "^5.9.0",
+    "vite": "^6.0.0"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
