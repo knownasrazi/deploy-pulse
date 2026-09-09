@@ -1,13 +1,22 @@
-﻿export default function App() {
+import { useState,useEffect } from "react";
+export default function App(){
+  const [deploys]=useState([{id:"abc123",status:"success",time:"2m ago"},{id:"def456",status:"building",time:"now"}]);
+  const [logs,setLogs]=useState("Building...\n✔ Compiled");
+  useEffect(()=>{ const t=setTimeout(()=>setLogs(l=>l+"\n✔ Deployed"),1500); return ()=>clearTimeout(t); },[]);
   return (
-    <main className="min-h-screen bg-[#fdfcfa] text-[#1a1a1a]">
-      <div className="mx-auto max-w-3xl px-6 py-24">
-        <p className="text-sm tracking-widest text-[#9a9590]">deploy-pulse</p>
-        <h1 className="mt-2 text-4xl font-light tracking-tight">Feel your deploy pulse.</h1>
-        <p className="mt-4 max-w-prose text-[#5a5754]">Deployment pulse dashboard - mock status, logs, and health for your stack.</p>
-        <div className="mt-8 rounded-2xl border border-[#ebe7e0] bg-white p-6">
-          <p className="text-sm text-[#9a9590]">Clean aesthetic - built for vibe coders.</p>
+    <main className="bg-[#fdfcfa] min-h-screen text-[#1a1a1a]">
+      <div className="mx-auto max-w-3xl px-6 py-8">
+        <h1 className="text-2xl font-light">deploy-pulse</h1>
+        <div className="mt-4 space-y-2">
+          {deploys.map(d=>(
+            <div key={d.id} className="flex items-center gap-3 rounded-2xl border border-[#ebe7e0] bg-white p-4">
+              <span className={"h-2 w-2 rounded-full "+(d.status==="success"?"bg-green-500":"bg-yellow-500")} />
+              <span className="text-sm font-mono">{d.id}</span>
+              <span className="text-sm text-[#9a9590]">{d.status} · {d.time}</span>
+            </div>
+          ))}
         </div>
+        <pre className="mt-6 rounded-2xl border border-[#ebe7e0] bg-white p-4 text-xs">{logs}</pre>
       </div>
     </main>
   );
